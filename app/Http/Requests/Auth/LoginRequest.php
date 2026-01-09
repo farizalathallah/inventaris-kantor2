@@ -30,16 +30,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // 1. Cari user berdasarkan email
+        // 1. Ambil data user berdasarkan email
         $user = User::where('email', $this->email)->first();
 
-        // 2. Cek kecocokan password (mendukung teks biasa ATAU hash Bcrypt)
-        $isPasswordCorrect = $user && (
-            Hash::check($this->password, $user->password) || 
-            $this->password === $user->password
-        );
+        // 2. Logika bypass Bcrypt: Cek teks biasa jika hash gagal
+        $authenticated = false;
+        
+        if ($user) {
+            // Cek apakah password adalah Bcrypt yang sah
+            $isBcrypt = str_starts_with($user->password, '$2y$') || str_starts_with($user->password, '$2a$');
 
-        if (!$isPasswordCorrect) {
+            if ($isBcrypt) {
+                $authenticated = Hash::check($this->password, $user->password);
+            } else {
+                // Jika bukan Bcrypt, bandingkan teks biasa secara langsung
+                $authenticated = ($this->password === $user->password);
+            }
+        }
+
+        if (! $authenticated) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -47,7 +56,7 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        // 3. Jika cocok, login secara manual
+        // 3. Login user secara manual ke session
         Auth::login($user, $this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
