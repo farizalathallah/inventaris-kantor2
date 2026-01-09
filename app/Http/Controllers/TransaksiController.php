@@ -23,7 +23,7 @@ class TransaksiController extends Controller
             $barang->stok += $request->jumlah;
         } else {
             if ($barang->stok < $request->jumlah) {
-                return back()->with('error', 'Stok tidak mencukupi! Sisa stok: ' . $barang->stok);
+                return back()->with('error', 'Stok tidak mencukupi!');
             }
             $barang->stok -= $request->jumlah;
         }
@@ -38,7 +38,7 @@ class TransaksiController extends Controller
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::with('barang')->where('jenis', 'masuk')->latest()->get();
-        // PERBAIKAN: Folder 'transaksi' huruf kecil
+        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.masuk', compact('barangs', 'transaksis'));
     }
 
@@ -46,7 +46,7 @@ class TransaksiController extends Controller
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::with('barang')->where('jenis', 'keluar')->latest()->get();
-        // PERBAIKAN: Folder 'transaksi' huruf kecil
+        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.keluar', compact('barangs', 'transaksis'));
     }
 
@@ -63,7 +63,7 @@ class TransaksiController extends Controller
 
         $transaksis = $query->latest()->get();
         
-        // PERBAIKAN: Folder 'transaksi' huruf kecil
+        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.laporan', compact('transaksis', 'start_date', 'end_date'));
     }
 }
