@@ -16,6 +16,7 @@ class Barang extends Model
     'stok',
     'jumlah',
     'harga',
+    'harga_pasar_api',
     'sumber_dana',
 ];
 

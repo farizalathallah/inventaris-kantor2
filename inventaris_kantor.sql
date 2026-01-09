@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 07, 2026 at 10:22 PM
+-- Generation Time: Jan 07, 2026 at 11:57 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.1.10
 
@@ -34,6 +34,7 @@ CREATE TABLE `barangs` (
   `kategori` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stok` int NOT NULL,
   `harga` bigint NOT NULL,
+  `harga_pasar_api` bigint DEFAULT NULL,
   `sumber_dana` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -43,28 +44,31 @@ CREATE TABLE `barangs` (
 -- Dumping data for table `barangs`
 --
 
-INSERT INTO `barangs` (`id`, `kode_barang`, `nama_barang`, `kategori`, `stok`, `harga`, `sumber_dana`, `created_at`, `updated_at`) VALUES
-(1, '001', 'Meja Kantor(Minimalist)', 'Peralatan kantor', 5, 150000, 'Operasional', '2026-01-07 12:36:46', '2026-01-07 12:36:46'),
-(2, '002', 'Laptop ASUS Vivobook Go 14', 'Elektronik', 3, 6200000, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:53:59'),
-(3, '003', 'Monitor LG 24 Inch IPS', 'Elektronik', 10, 1450000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(4, '004', 'Printer Epson L3210 EcoTank', 'Elektronik', 4, 2350000, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:49:24'),
-(5, '005', 'Proyektor Epson EB-E500', 'Elektronik', 2, 5100000, 'Modal', '2026-01-07 21:39:50', '2026-01-07 14:48:52'),
-(6, '006', 'UPS APC 700VA', 'Elektronik', 4, 950000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(7, '007', 'Router TP-Link Archer AX12', 'Elektronik', 5, 550000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(8, '008', 'Scanner Canon DR-C225', 'Elektronik', 2, 4800000, 'Laba Perusahaan', '2026-01-07 21:39:50', '2026-01-07 14:48:38'),
-(9, '009', 'Kursi Kantor Hidrolik Jaring', 'Peralatan kantor', 15, 850000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(10, '010', 'Meja Kerja Kayu 120cm', 'Peralatan kantor', 10, 700000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(11, '011', 'Filling Cabinet Besi 4 Laci', 'Peralatan kantor', 5, 1600000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 14:48:24'),
-(12, '012', 'Whiteboard Gantung 120x90', 'Peralatan kantor', 4, 350000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(13, '013', 'AC Sharp 1/2 PK', 'Elektronik', 3, 3200000, 'Laba Perusahaan', '2026-01-07 21:39:50', '2026-01-07 14:48:12'),
-(14, '014', 'Kertas HVS A4 80gr', 'Konsumsi', 50, 55000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(15, '015', 'Tinta Printer Epson Black', 'Konsumsi', 20, 95000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(16, '016', 'Stapler Kangaro HD-10', 'Konsumsi', 12, 45000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(17, '017', 'Mesin Penghancur Kertas', 'Peralatan kantor', 2, 1200000, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:47:56'),
-(18, '018', 'Dispenser Galon Bawah', 'Keperluan kantor', 2, 1850000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(19, '019', 'Coffee Maker Drip', 'Keperluan kantor', 1, 450000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(21, '021', 'Kotak P3K Lengkap Isi', 'Keperluan kantor', 5, 250000, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
-(22, '022', 'jajanan', 'konsumsi', 100, 300000, 'Operasional', '2026-01-07 14:47:01', '2026-01-07 14:47:01');
+INSERT INTO `barangs` (`id`, `kode_barang`, `nama_barang`, `kategori`, `stok`, `harga`, `harga_pasar_api`, `sumber_dana`, `created_at`, `updated_at`) VALUES
+(1, '001', 'Meja Kantor(Minimalist)', 'Peralatan kantor', 5, 150000, 158384, 'Modal', '2026-01-07 12:36:46', '2026-01-07 16:39:59'),
+(2, '002', 'Laptop ASUS Vivobook Go 14', 'Elektronik', 3, 6200000, NULL, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:53:59'),
+(3, '003', 'Monitor LG 24 Inch IPS', 'Elektronik', 10, 1450000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(4, '004', 'Printer Epson L3210 EcoTank', 'Elektronik', 4, 2350000, NULL, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:49:24'),
+(5, '005', 'Proyektor Epson EB-E500', 'Elektronik', 2, 5100000, NULL, 'Modal', '2026-01-07 21:39:50', '2026-01-07 14:48:52'),
+(6, '006', 'UPS APC 700VA', 'Elektronik', 4, 950000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(7, '007', 'Router TP-Link Archer AX12', 'Elektronik', 5, 550000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(8, '008', 'Scanner Canon DR-C225', 'Elektronik', 2, 4800000, NULL, 'Laba Perusahaan', '2026-01-07 21:39:50', '2026-01-07 14:48:38'),
+(9, '009', 'Kursi Kantor Hidrolik Jaring', 'Peralatan kantor', 15, 850000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(10, '010', 'Meja Kerja Kayu 120cm', 'Peralatan kantor', 10, 700000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(11, '011', 'Filling Cabinet Besi 4 Laci', 'Peralatan kantor', 5, 1600000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 14:48:24'),
+(12, '012', 'Whiteboard Gantung 120x90', 'Peralatan kantor', 4, 350000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(13, '013', 'AC Sharp 1/2 PK', 'Elektronik', 3, 3200000, NULL, 'Laba Perusahaan', '2026-01-07 21:39:50', '2026-01-07 14:48:12'),
+(14, '014', 'Kertas HVS A4 80gr', 'Konsumsi', 50, 55000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(15, '015', 'Tinta Printer Epson Black', 'Konsumsi', 20, 95000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(16, '016', 'Stapler Kangaro HD-10', 'Konsumsi', 12, 45000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(17, '017', 'Mesin Penghancur Kertas', 'Peralatan kantor', 2, 1200000, NULL, 'Sponsor', '2026-01-07 21:39:50', '2026-01-07 14:47:56'),
+(18, '018', 'Dispenser Galon Bawah', 'Keperluan kantor', 2, 1850000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(19, '019', 'Coffee Maker Drip', 'Keperluan kantor', 1, 450000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(21, '021', 'Kotak P3K Lengkap Isi', 'Keperluan kantor', 5, 250000, NULL, 'Operasional', '2026-01-07 21:39:50', '2026-01-07 21:39:50'),
+(22, '022', 'jajanan', 'konsumsi', 100, 300000, 308384, 'Operasional', '2026-01-07 14:47:01', '2026-01-07 16:39:19'),
+(24, '023', 'Kertas HVS', 'Peralatan kantor', 100, 2340000, 2348384, 'Operasional', '2026-01-07 16:27:39', '2026-01-07 16:27:39'),
+(25, '024', 'bunga hias', 'Peralatan kantor', 30, 29500, 37884, 'Sponsor', '2026-01-07 16:37:34', '2026-01-07 16:37:34'),
+(26, '023', 'bunga hias', 'Peralatan kantor', 30, 885000, 893384, 'Sponsor', '2026-01-07 16:38:19', '2026-01-07 16:38:19');
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2026_01_07_152701_create_barangs_table', 1),
 (7, '2026_01_07_153032_create_barang_ctrollers_table', 1),
 (8, '2026_01_07_190716_create_suppliers_table', 1),
-(9, '2026_01_07_195217_create_transaksis_table', 2);
+(9, '2026_01_07_195217_create_transaksis_table', 2),
+(10, '2026_01_07_231628_add_harga_pasar_to_barangs_table', 3);
 
 -- --------------------------------------------------------
 
@@ -310,7 +315,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `barang_ctrollers`
@@ -328,7 +333,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
