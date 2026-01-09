@@ -5,21 +5,25 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle($request, Closure $next, $role)
-{
-    // Jika user belum login atau role-nya tidak sesuai dengan yang diminta
-    if (!auth()->check() || auth()->user()->role !== $role) {
-        abort(403, 'Akses Ditolak! Anda bukan Admin.');
-    }
+    public function handle(Request $request, Closure $next, string $role): Response
+    {
+        // 1. Cek apakah user sudah login
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
 
-    return $next($request);
-}
+        // 2. Ambil role user (pastikan tidak null) dan bandingkan
+        // strtolower digunakan agar 'Admin' atau 'admin' tetap dianggap sama
+        $userRole = strtolower(Auth::user()->role ?? '');
+        
+        if ($userRole !== strtolower($role)) {
+            abort(403, 'Akses Ditolak! Anda bukan ' . $role);
+        }
+
+        return $next($request);
+    }
 }
