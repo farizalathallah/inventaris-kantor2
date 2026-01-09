@@ -11,16 +11,13 @@ class CheckRole
 {
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        // 1. Cek apakah user sudah login
+        // Cek login
         if (!Auth::check()) {
             return redirect('/login');
         }
 
-        // 2. Ambil role user (pastikan tidak null) dan bandingkan
-        // strtolower digunakan agar 'Admin' atau 'admin' tetap dianggap sama
-        $userRole = strtolower(Auth::user()->role ?? '');
-        
-        if ($userRole !== strtolower($role)) {
+        // Cek apakah role di database sesuai dengan route (admin)
+        if (Auth::user()->role !== $role) {
             abort(403, 'Akses Ditolak! Anda bukan ' . $role);
         }
 
