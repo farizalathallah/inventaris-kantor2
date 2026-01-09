@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // Baris ini wajib ada untuk mengatur URL
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
-         * Memaksa Laravel menggunakan skema HTTPS jika berjalan di environment production (Railway).
-         * Ini akan memperbaiki error "Mixed Content" yang membuat CSS/JS tidak terbaca.
+         * Memaksa Laravel menggunakan skema HTTPS saat di Railway (production).
+         * Ini akan memperbaiki error "Mixed Content" dan memunculkan kembali CSS/JS AdminLTE.
          */
         if (config('app.env') === 'production') {
             URL::forceScheme('https');
