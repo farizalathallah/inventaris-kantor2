@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Sistem Inventaris Kantor'',
     'title_prefix' => '',
     'title_postfix' => '',
 
