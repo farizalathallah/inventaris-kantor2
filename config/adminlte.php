@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Sistem Inventaris Kantor'',
+    'title' => 'Sistem Inventaris Kantor',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -58,7 +58,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'logo' => '<b>Inventaris</b>Barang',
-    'logo_img' => 'vendor/adminlte/dist/img/LogoKantor.png', // Diarahkan ke folder public
+    'logo_img' => 'vendor/adminlte/dist/img/LogoKantor.png',
     'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -72,20 +72,14 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => true, // Harus true untuk munculkan foto
+    'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => false,
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Logo
     |--------------------------------------------------------------------------
-    |
-    | Here you can setup an alternative logo to use on your login and register
-    | screens. When disabled, the admin panel logo will be used instead.
-    |
-    | For detailed instructions you can look the auth logo section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
     */
 
     'auth_logo' => [
@@ -103,15 +97,6 @@ return [
     |--------------------------------------------------------------------------
     | Preloader Animation
     |--------------------------------------------------------------------------
-    |
-    | Here you can change the preloader animation configuration. Currently, two
-    | modes are supported: 'fullscreen' for a fullscreen preloader animation
-    | and 'cwrapper' to attach the preloader animation into the content-wrapper
-    | element and avoid overlapping it with the sidebars and the top navbar.
-    |
-    | For detailed instructions you can look the preloader section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
     */
 
     'preloader' => [
@@ -130,12 +115,6 @@ return [
     |--------------------------------------------------------------------------
     | Layout
     |--------------------------------------------------------------------------
-    |
-    | Here we change the layout of your admin panel.
-    |
-    | For detailed instructions you can look the layout section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
-    |
     */
 
     'layout_topnav' => null,
@@ -149,12 +128,6 @@ return [
     |--------------------------------------------------------------------------
     | Authentication Views Classes
     |--------------------------------------------------------------------------
-    |
-    | Here you can change the look and behavior of the authentication views.
-    |
-    | For detailed instructions you can look the auth classes section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
-    |
     */
 
     'classes_auth_card' => 'card-outline card-primary',
@@ -168,12 +141,6 @@ return [
     |--------------------------------------------------------------------------
     | Admin Panel Classes
     |--------------------------------------------------------------------------
-    |
-    | Here you can change the look and behavior of the admin panel.
-    |
-    | For detailed instructions you can look the admin panel classes here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
-    |
     */
 
     'classes_body' => '',
@@ -192,12 +159,6 @@ return [
     |--------------------------------------------------------------------------
     | Sidebar
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the sidebar of the admin panel.
-    |
-    | For detailed instructions you can look the sidebar section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
-    |
     */
 
     'sidebar_mini' => 'lg',
@@ -214,12 +175,6 @@ return [
     |--------------------------------------------------------------------------
     | Control Sidebar (Right Sidebar)
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the right sidebar aka control sidebar of the admin panel.
-    |
-    | For detailed instructions you can look the right sidebar section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
-    |
     */
 
     'right_sidebar' => false,
@@ -234,38 +189,23 @@ return [
     |--------------------------------------------------------------------------
     | URLs
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the url settings of the admin panel.
-    |
-    | For detailed instructions you can look the urls section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
     */
 
     'auth' => [
-    'login_url'    => 'login',
-    'logout_url'   => 'logout',
-    'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
-    'profile_url'  => false,
-],
+        'login_url'    => 'login',
+        'logout_url'   => 'logout',
+        'register_url' => 'register',
+        'password_reset_url' => 'password/reset',
+        'password_email_url' => 'password/email',
+        'profile_url'  => false,
+    ],
+
     'disable_darkmode_routes' => false,
 
     /*
     |--------------------------------------------------------------------------
     | Laravel Asset Bundling
     |--------------------------------------------------------------------------
-    |
-    | Here we can enable the Laravel Asset Bundling option for the admin panel.
-    | Currently, the next modes are supported: 'mix', 'vite' and 'vite_js_only'.
-    | When using 'vite_js_only', it's expected that your CSS is imported using
-    | JavaScript. Typically, in your application's 'resources/js/app.js' file.
-    | If you are not using any of these, leave it as 'false'.
-    |
-    | For detailed instructions you can look the asset bundling section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
-    |
     */
 
     'laravel_asset_bundling' => false,
@@ -276,81 +216,62 @@ return [
     |--------------------------------------------------------------------------
     | Menu Items
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the sidebar/top navigation of the admin panel.
-    |
-    | For detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
-    |
     */
 
     'menu' => [
-
-    ['header' => 'MAIN NAVIGATION'],
-
-    [
-        'text' => 'Dashboard',
-        'url'  => 'dashboard',
-        'icon' => 'fas fa-tachometer-alt',
-        'can'  => 'auth',
-    ],
-    [
-        'text' => 'Data Barang',
-        'url'  => 'barang',
-        'icon' => 'fas fa-box',
-        'can'  => 'auth',
-    ],
-    [
-        'text' => 'Data Supplier',
-        'url'  => 'supplier',
-        'icon' => 'fas fa-truck',
-        'can'  => 'auth',
-    ],
-    [
-    'text'    => 'Transaksi Barang',
-    'icon'    => 'fas fa-fw fa-exchange-alt',
-    'submenu' => [
+        ['header' => 'MAIN NAVIGATION'],
         [
-            'text' => 'Barang Masuk',
-            'url'  => 'transaksi/masuk',
-            'icon' => 'fas fa-fw fa-arrow-down text-success',
+            'text' => 'Dashboard',
+            'url'  => 'dashboard',
+            'icon' => 'fas fa-tachometer-alt',
+            'can'  => 'auth',
         ],
         [
-            'text' => 'Barang Keluar',
-            'url'  => 'transaksi/keluar',
-            'icon' => 'fas fa-fw fa-arrow-up text-danger',
+            'text' => 'Data Barang',
+            'url'  => 'barang',
+            'icon' => 'fas fa-box',
+            'can'  => 'auth',
         ],
         [
-    'text' => 'Laporan',
-    'url'  => 'laporan',
-    'icon' => 'fas fa-fw fa-file-alt',
-],
-
+            'text' => 'Data Supplier',
+            'url'  => 'supplier',
+            'icon' => 'fas fa-truck',
+            'can'  => 'auth',
+        ],
+        [
+            'text'    => 'Transaksi Barang',
+            'icon'    => 'fas fa-fw fa-exchange-alt',
+            'submenu' => [
+                [
+                    'text' => 'Barang Masuk',
+                    'url'  => 'transaksi/masuk',
+                    'icon' => 'fas fa-fw fa-arrow-down text-success',
+                ],
+                [
+                    'text' => 'Barang Keluar',
+                    'url'  => 'transaksi/keluar',
+                    'icon' => 'fas fa-fw fa-arrow-up text-danger',
+                ],
+                [
+                    'text' => 'Laporan',
+                    'url'  => 'laporan',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                ],
+            ],
+        ],
+        ['header' => 'ACCOUNT'],
+        [
+            'text' => 'Manajemen User',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'can'  => 'admin-only',
+        ],
     ],
-],
-
-    ['header' => 'ACCOUNT'],
-
-    [
-    'text' => 'Manajemen User',
-    'url'  => 'users',
-    'icon' => 'fas fa-fw fa-users-cog',
-    'can'  => 'admin-only',
-    ],
-    
-],
-
 
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the menu filters of the admin panel.
-    |
-    | For detailed instructions you can look the menu filters section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
-    |
     */
 
     'filters' => [
@@ -367,12 +288,6 @@ return [
     |--------------------------------------------------------------------------
     | Plugins Initialization
     |--------------------------------------------------------------------------
-    |
-    | Here we can modify the plugins used inside the admin panel.
-    |
-    | For detailed instructions you can look the plugins section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Plugins-Configuration
-    |
     */
 
     'plugins' => [
@@ -448,19 +363,6 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | IFrame
-    |--------------------------------------------------------------------------
-    |
-    | Here we change the IFrame mode configuration. Note these changes will
-    | only apply to the view that extends and enable the IFrame mode.
-    |
-    | For detailed instructions you can look the iframe mode section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/IFrame-Mode-Configuration
-    |
-    */
-
     'iframe' => [
         'default_tab' => [
             'url' => null,
@@ -480,18 +382,6 @@ return [
             'use_navbar_items' => true,
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Livewire
-    |--------------------------------------------------------------------------
-    |
-    | Here we can enable the Livewire support.
-    |
-    | For detailed instructions you can look the livewire here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
-    |
-    */
 
     'livewire' => false,
 ];
