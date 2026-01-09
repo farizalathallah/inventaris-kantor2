@@ -23,7 +23,7 @@
                     <label>Alamat</label>
                     <textarea name="alamat" class="form-control" rows="3" required>{{ $supplier->alamat }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Update</button> 
                 <a href="{{ route('supplier.index') }}" class="btn btn-secondary">Batal</a>
             </form>
         </div>
