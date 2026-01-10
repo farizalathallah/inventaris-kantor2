@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Memaksa HTTPS jika tidak di komputer lokal (solusi tampilan polos)
-        if (config('app.env') !== 'local') {
+        if (config('app.env') !== 'production') {
             URL::forceScheme('https');
         }
     }
