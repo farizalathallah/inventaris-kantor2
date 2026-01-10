@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function register(): void { }
+
     public function boot(): void
     {
-        // Paksa HTTPS di environment Railway agar CSS/JS tidak terblokir
+        // Paksa semua link aset (CSS/JS) menggunakan HTTPS jika di Railway
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
