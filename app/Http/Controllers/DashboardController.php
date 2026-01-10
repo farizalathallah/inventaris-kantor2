@@ -10,17 +10,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // 1. Menghitung total stok seluruh barang
+        // Menghitung total stok dari semua barang
         $totalBarang = Barang::sum('stok');
 
-        // 2. Menghitung total nilai aset (stok * harga)
-        // Menangani null dengan ?? 0 agar tidak error jika database kosong
+        // Menghitung total nilai aset (stok dikali harga)
         $totalAset = Barang::selectRaw('SUM(stok * harga) as total')->value('total') ?? 0;
 
-        // 3. Menghitung jumlah user terdaftar
+        // Menghitung total user terdaftar
         $totalUser = User::count();
 
-        // 4. Kirim data ke view dashboard
         return view('dashboard', compact('totalBarang', 'totalAset', 'totalUser'));
     }
 }
