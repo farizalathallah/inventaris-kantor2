@@ -9,7 +9,8 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('user.update', $user->id) }}" method="POST">
+        {{-- DIPERBAIKI: route('users.update') --}}
+        <form action="{{ route('users.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT')
             
@@ -27,7 +28,8 @@
             </div>
 
             <div class="mt-4">
-                <a href="{{ route('user.index') }}" class="btn btn-secondary">Batal</a>
+                {{-- DIPERBAIKI: route('users.index') --}}
+                <a href="{{ route('users.index') }}" class="btn btn-secondary">Batal</a>
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </div>
         </form>
