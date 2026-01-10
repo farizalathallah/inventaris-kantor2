@@ -23,8 +23,8 @@
                             <select name="barang_id" class="form-control select2 @error('barang_id') is-invalid @enderror" style="width: 100%;">
                                 <option value="" selected disabled>-- Pilih Barang --</option>
                                 @foreach($barangs as $b)
-                                    {{-- PERBAIKAN: Memanggil $b->nama agar tidak cuma muncul stok --}}
-                                    <option value="{{ $b->id }}">{{ $b->nama }} (Stok: {{ $b->stok }})</option>
+                                    {{-- PERBAIKAN: Menggunakan nama_barang sesuai Model --}}
+                                    <option value="{{ $b->id }}">{{ $b->nama_barang }} (Stok: {{ $b->stok }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -35,6 +35,11 @@
                         <div class="form-group">
                             <label>Tanggal</label>
                             <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" required>
+                        </div>
+                        {{-- PERBAIKAN: Menambahkan kolom keterangan yang sebelumnya hilang --}}
+                        <div class="form-group">
+                            <label>Keterangan / Sumber</label>
+                            <textarea name="keterangan" class="form-control" rows="2" placeholder="Contoh: Dari Supplier A / Pembelian Baru"></textarea>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -57,18 +62,21 @@
                                     <th>Tanggal</th>
                                     <th>Nama Barang</th>
                                     <th class="text-center">Jumlah</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($transaksis as $t)
                                 <tr>
                                     <td>{{ date('d/m/Y', strtotime($t->tanggal)) }}</td>
-                                    <td>{{ $t->barang->nama ?? 'N/A' }}</td>
+                                    {{-- PERBAIKAN: Menggunakan nama_barang --}}
+                                    <td>{{ $t->barang->nama_barang ?? 'N/A' }}</td>
                                     <td class="text-center"><span class="badge badge-success">+{{ $t->jumlah }}</span></td>
+                                    <td>{{ $t->keterangan ?? '-' }}</td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="3" class="text-center py-3">Belum ada riwayat masuk hari ini.</td>
+                                    <td colspan="4" class="text-center py-3">Belum ada riwayat masuk hari ini.</td>
                                 </tr>
                                 @endforelse
                             </tbody>
