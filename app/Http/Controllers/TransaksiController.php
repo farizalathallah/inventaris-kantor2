@@ -10,35 +10,48 @@ class TransaksiController extends Controller
 {
     public function store(Request $request) 
     {
+        // 1. Validasi Input yang lebih ketat
         $request->validate([
-            'barang_id' => 'required',
-            'jenis'     => 'required',
+            'barang_id' => 'required|exists:barangs,id',
+            'jenis'     => 'required|in:masuk,keluar',
             'jumlah'    => 'required|integer|min:1',
             'tanggal'   => 'required|date',
+            'keterangan' => 'nullable|string'
         ]);
 
+        // 2. Cari barang
         $barang = Barang::findOrFail($request->barang_id);
 
+        // 3. Logika Update Stok
         if ($request->jenis == 'masuk') {
             $barang->stok += $request->jumlah;
         } else {
+            // Cek stok sebelum dikurangi
             if ($barang->stok < $request->jumlah) {
-                return back()->with('error', 'Stok tidak mencukupi!');
+                return back()->with('error', 'Gagal! Stok ' . $barang->nama . ' tidak mencukupi.');
             }
             $barang->stok -= $request->jumlah;
         }
 
+        // 4. SIMPAN PERUBAHAN STOK KE DATABASE
         $barang->save();
-        Transaksi::create($request->all());
 
-        return redirect()->back()->with('success', 'Transaksi berhasil dicatat');
+        // 5. SIMPAN RIWAYAT TRANSAKSI (Gunakan data spesifik agar aman)
+        Transaksi::create([
+            'barang_id'  => $request->barang_id,
+            'jenis'      => $request->jenis,
+            'jumlah'     => $request->jumlah,
+            'tanggal'    => $request->tanggal,
+            'keterangan' => $request->keterangan, // Pastikan input 'keterangan' ada di form
+        ]);
+
+        return redirect()->back()->with('success', 'Transaksi ' . $request->jenis . ' berhasil dicatat dan stok diperbarui!');
     }
 
     public function indexMasuk()
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::with('barang')->where('jenis', 'masuk')->latest()->get();
-        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.masuk', compact('barangs', 'transaksis'));
     }
 
@@ -46,7 +59,6 @@ class TransaksiController extends Controller
     {
         $barangs = Barang::all();
         $transaksis = Transaksi::with('barang')->where('jenis', 'keluar')->latest()->get();
-        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.keluar', compact('barangs', 'transaksis'));
     }
 
@@ -63,7 +75,6 @@ class TransaksiController extends Controller
 
         $transaksis = $query->latest()->get();
         
-        // PASTIKAN INI HURUF KECIL 'transaksi'
         return view('transaksi.laporan', compact('transaksis', 'start_date', 'end_date'));
     }
 }
