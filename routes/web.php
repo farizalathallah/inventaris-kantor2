@@ -67,10 +67,10 @@ Route::middleware('auth')->group(function () {
         // Master Supplier (Full CRUD)
         Route::resource('supplier', SupplierController::class)->except(['index']);
         
-        // Manajemen User (PENTING: Menggunakan 'users' jamak)
+        // Manajemen User
         Route::resource('users', UserController::class);
         
-        // Laporan
+        // Laporan (DISINKRONKAN: Menggunakan nama 'laporan.index')
         Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan.index');
     });
 });
