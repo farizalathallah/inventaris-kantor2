@@ -17,16 +17,16 @@ return [
     'logo_img_alt' => 'Logo Kantor',
 
     /*
-|--------------------------------------------------------------------------
-| User Menu
-|--------------------------------------------------------------------------
-*/
-'usermenu_enabled' => true,
-'usermenu_header' => true,
-'usermenu_header_class' => 'bg-primary',
-'usermenu_image' => true, // Set ke true agar foto profil muncul
-'usermenu_desc' => true,
-'usermenu_profile_url' => false,
+    |--------------------------------------------------------------------------
+    | User Menu
+    |--------------------------------------------------------------------------
+    */
+    'usermenu_enabled' => true,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-primary',
+    'usermenu_image' => true, 
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -37,10 +37,6 @@ return [
         'enabled' => false,
     ],
     
-    'usermenu_enabled' => true,
-    'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
-
     'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
@@ -70,7 +66,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'menu' => [
-        // Bagian Pencarian
         [
             'type' => 'navbar-search',
             'text' => 'search',
@@ -81,7 +76,6 @@ return [
             'topnav_right' => true,
         ],
 
-        // Menu Utama
         ['header' => 'MAIN NAVIGATION'],
         [
             'text' => 'Dashboard',
@@ -120,13 +114,12 @@ return [
             ],
         ],
 
-        // Bagian Admin (Hanya muncul jika User memiliki role 'admin')
         ['header' => 'ADMIN AREA'],
         [
             'text' => 'Manajemen User',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-users-cog',
-            'can'  => 'admin-only', // Terhubung dengan Gate di AuthServiceProvider
+            'can'  => 'admin-only',
         ],
     ],
 
@@ -170,6 +163,22 @@ return [
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Preloader Animation (BAGIAN BARU)
+    |--------------------------------------------------------------------------
+    */
+    'preloader' => [
+        'enabled' => true,
+        'img' => [
+            'path' => 'vendor/adminlte/dist/img/LogoKantor.png',
+            'alt' => 'Memuat Sistem...',
+            'effect' => 'animation__shake',
+            'width' => 100,
+            'height' => 100,
         ],
     ],
 
