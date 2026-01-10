@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,18 +21,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerPolicies();
+
+        // Gate untuk mengecek apakah user sudah login
         Gate::define('auth', function ($user) {
-        return auth()->check();
+            return auth()->check();
+        });
 
-        
-    }); 
-    
-    {
-    Gate::define('admin-only', function ($user) {
-        return $user->role === 'admin';
-    });
-}    
+        // Gate khusus untuk menu Manajemen User (Admin Only)
+        Gate::define('admin-only', function ($user) {
+            return $user->role === 'admin';
+        });
     }
-
-    
 }
