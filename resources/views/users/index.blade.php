@@ -8,12 +8,19 @@
 
 @section('content')
 
-{{-- Menampilkan Pesan Sukses --}}
 @if(session('success'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h5><i class="icon fas fa-check"></i> Sukses!</h5>
         {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-ban"></i> Error!</h5>
+        {{ session('error') }}
     </div>
 @endif
 
@@ -31,7 +38,6 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Tanggal Bergabung</th>
-                        {{-- Kolom Aksi Hanya Muncul di layar Admin --}}
                         @if(auth()->user()->role == 'admin')
                             <th style="width: 150px">Aksi</th>
                         @endif
@@ -50,18 +56,17 @@
                         </td>
                         <td>{{ $u->created_at->format('d M Y') }}</td>
                         
-                        {{-- Logika Tombol Aksi --}}
                         @if(auth()->user()->role == 'admin')
                         <td>
                             <div class="d-flex">
-                                {{-- 1. Tombol Edit Role --}}
-                                <a href="{{ route('user.edit', $u->id) }}" class="btn btn-sm btn-warning mr-2" title="Ubah Role">
+                                {{-- DIPERBAIKI: route('users.edit') --}}
+                                <a href="{{ route('users.edit', $u->id) }}" class="btn btn-sm btn-warning mr-2" title="Ubah Role">
                                     <i class="fas fa-user-shield"></i> Edit
                                 </a>
 
-                                {{-- 2. Tombol Hapus (Admin tidak bisa hapus diri sendiri) --}}
                                 @if($u->id !== auth()->id())
-                                <form action="{{ route('user.destroy', $u->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+                                {{-- DIPERBAIKI: route('users.destroy') --}}
+                                <form action="{{ route('users.destroy', $u->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">
