@@ -17,6 +17,18 @@ return [
     'logo_img_alt' => 'Logo Kantor',
 
     /*
+|--------------------------------------------------------------------------
+| User Menu
+|--------------------------------------------------------------------------
+*/
+'usermenu_enabled' => true,
+'usermenu_header' => true,
+'usermenu_header_class' => 'bg-primary',
+'usermenu_image' => true, // Set ke true agar foto profil muncul
+'usermenu_desc' => true,
+'usermenu_profile_url' => false,
+
+    /*
     |--------------------------------------------------------------------------
     | Authentication & Layout
     |--------------------------------------------------------------------------
