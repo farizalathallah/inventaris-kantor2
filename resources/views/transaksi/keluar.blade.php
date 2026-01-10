@@ -23,8 +23,8 @@
                             <select name="barang_id" class="form-control select2 @error('barang_id') is-invalid @enderror" style="width: 100%;">
                                 <option value="" selected disabled>-- Pilih Barang --</option>
                                 @foreach($barangs as $b)
-                                    {{-- PERBAIKAN: Memanggil $b->nama agar tidak cuma muncul stok --}}
-                                    <option value="{{ $b->id }}">{{ $b->nama }} (Sisa: {{ $b->stok }})</option>
+                                    {{-- PERBAIKAN: Menggunakan nama_barang sesuai Model --}}
+                                    <option value="{{ $b->id }}">{{ $b->nama_barang }} (Sisa: {{ $b->stok }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -67,7 +67,8 @@
                                 @forelse($transaksis as $t)
                                 <tr>
                                     <td>{{ date('d/m/Y', strtotime($t->tanggal)) }}</td>
-                                    <td>{{ $t->barang->nama ?? 'N/A' }}</td>
+                                    {{-- PERBAIKAN: Menggunakan nama_barang --}}
+                                    <td>{{ $t->barang->nama_barang ?? 'N/A' }}</td>
                                     <td class="text-center"><span class="badge badge-danger">-{{ $t->jumlah }}</span></td>
                                     <td>{{ $t->keterangan ?? '-' }}</td>
                                 </tr>
