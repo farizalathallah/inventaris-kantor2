@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Inventaris')
 
 @section('content_header')
     <h1>Dashboard Inventaris Kantor</h1>
@@ -27,7 +27,8 @@
         <div class="col-12 col-sm-6 col-lg-4">
             <div class="small-box bg-success shadow-sm">
                 <div class="inner">
-                    <h3 style="font-size: 1.6rem;">Rp {{ number_format($totalAset, 0, ',', '.') }}</h3>
+                    {{-- Format Rupiah Otomatis --}}
+                    <h3 style="white-space: nowrap;">Rp {{ number_format($totalAset, 0, ',', '.') }}</h3>
                     <p>Total Nilai Aset</p>
                 </div>
                 <div class="icon">
@@ -59,7 +60,7 @@
 
 @section('css')
 <style>
-    /* Agar angka panjang tidak meluber di HP */
+    /* Agar tampilan tetap rapi di layar HP */
     @media (max-width: 576px) {
         .small-box h3 {
             font-size: 1.4rem !important;
