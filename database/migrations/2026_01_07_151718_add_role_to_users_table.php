@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-    $table->string('role')->default('user');
-});
+            // Menambahkan kolom role setelah kolom email (opsional agar rapi)
+            // Default adalah 'user', sehingga user lama tidak error
+            $table->string('role')->default('user')->after('email');
+        });
     }
 
     /**
@@ -22,7 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            // Menghapus kolom jika migration di-rollback
+            $table->dropColumn('role');
         });
     }
 };
