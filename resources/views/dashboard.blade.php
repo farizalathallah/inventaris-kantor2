@@ -16,7 +16,9 @@
                     <p>Total Unit Barang</p>
                 </div>
                 <div class="icon"><i class="fas fa-box"></i></div>
-                <a href="{{ route('barang.index') }}" class="small-box-footer">Lihat Detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('barang.index') }}" class="small-box-footer">
+                    Lihat Detail <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
 
@@ -27,7 +29,9 @@
                     <p>Total Nilai Aset</p>
                 </div>
                 <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
-                <a href="{{ route('transaksi.laporan') }}" class="small-box-footer">Lihat Laporan <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('laporan.index') }}" class="small-box-footer">
+                    Lihat Laporan <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
 
@@ -38,9 +42,20 @@
                     <p>User Terdaftar</p>
                 </div>
                 <div class="icon"><i class="fas fa-users"></i></div>
-                <a href="{{ route('users.index') }}" class="small-box-footer">Info User <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('users.index') }}" class="small-box-footer">
+                    Info User <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
     </div>
 </div>
+@stop
+
+@section('css')
+<style>
+    /* Mencegah teks angka meluber pada layar kecil */
+    @media (max-width: 576px) {
+        .small-box h3 { font-size: 1.3rem !important; }
+    }
+</style>
 @stop
