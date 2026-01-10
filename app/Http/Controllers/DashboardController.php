@@ -10,13 +10,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Menghitung total stok dari semua barang
+        // Ambil data real-time dari database
         $totalBarang = Barang::sum('stok');
-
-        // Menghitung total nilai aset (stok dikali harga)
         $totalAset = Barang::selectRaw('SUM(stok * harga) as total')->value('total') ?? 0;
-
-        // Menghitung total user terdaftar
         $totalUser = User::count();
 
         return view('dashboard', compact('totalBarang', 'totalAset', 'totalUser'));
