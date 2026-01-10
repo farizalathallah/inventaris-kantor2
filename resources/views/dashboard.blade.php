@@ -50,12 +50,3 @@
     </div>
 </div>
 @stop
-
-@section('css')
-<style>
-    /* Mencegah teks angka meluber pada layar kecil */
-    @media (max-width: 576px) {
-        .small-box h3 { font-size: 1.3rem !important; }
-    }
-</style>
-@stop
