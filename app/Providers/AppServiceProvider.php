@@ -3,30 +3,17 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // Wajib ditambahkan
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+    public function register(): void { }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        /**
-         * Memaksa Laravel menggunakan protokol HTTPS pada semua aset (CSS/JS) 
-         * jika aplikasi berjalan di lingkungan 'production' (Railway).
-         * Ini akan memperbaiki error "Mixed Content" di console browser kamu.
-         */
+        // Memaksa HTTPS jika tidak di komputer lokal (solusi tampilan polos)
         if (config('app.env') !== 'local') {
-        \Illuminate\Support\Facades\URL::forceScheme('https');
+            URL::forceScheme('https');
+        }
     }
-}
 }
