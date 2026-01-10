@@ -12,7 +12,7 @@
         <div class="col-12 col-sm-6 col-lg-4">
             <div class="small-box bg-info shadow-sm">
                 <div class="inner">
-                    <h3>533</h3>
+                    <h3>{{ number_format($totalBarang) }}</h3>
                     <p>Total Unit Barang</p>
                 </div>
                 <div class="icon">
@@ -27,13 +27,13 @@
         <div class="col-12 col-sm-6 col-lg-4">
             <div class="small-box bg-success shadow-sm">
                 <div class="inner">
-                    <h3>Rp 13.456</h3>
+                    <h3 style="font-size: 1.6rem;">Rp {{ number_format($totalAset, 0, ',', '.') }}</h3>
                     <p>Total Nilai Aset</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-money-bill-wave"></i>
                 </div>
-                <a href="{{ route('laporan.index') }}" class="small-box-footer">
+                <a href="{{ route('transaksi.laporan') }}" class="small-box-footer">
                     Lihat Laporan <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -42,7 +42,7 @@
         <div class="col-12 col-sm-6 col-lg-4">
             <div class="small-box bg-warning shadow-sm">
                 <div class="inner">
-                    <h3>5</h3>
+                    <h3>{{ $totalUser }}</h3>
                     <p>User Terdaftar</p>
                 </div>
                 <div class="icon">
@@ -55,4 +55,15 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('css')
+<style>
+    /* Agar angka panjang tidak meluber di HP */
+    @media (max-width: 576px) {
+        .small-box h3 {
+            font-size: 1.4rem !important;
+        }
+    }
+</style>
 @stop
