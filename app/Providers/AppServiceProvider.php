@@ -3,15 +3,18 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\URL; // Wajib import ini
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void { }
+    public function register(): void
+    {
+        //
+    }
 
     public function boot(): void
     {
-        // Memaksa Laravel menggunakan HTTPS agar CSS/JS terbaca di Railway
+        // Baris ini akan memaksa semua link asset menggunakan https://
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
