@@ -2,62 +2,76 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Title & Logo
+    |--------------------------------------------------------------------------
+    */
     'title' => 'Sistem Inventaris Kantor',
     'title_prefix' => '',
     'title_postfix' => '',
 
-    'use_route_url' => false,
-    'use_ico_only' => false,
-    'use_full_favicon' => false,
-
-    'google_fonts' => [
-        'allowed' => true,
-    ],
-
     'logo' => '<b>Inventaris</b>Barang',
-    'logo_img' => 'vendor/adminlte/dist/img/LogoKantor.png',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image elevation-3',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Logo Kantor',
-
-    'usermenu_enabled' => true,
-    'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => true,
-    'usermenu_desc' => true,
-    'usermenu_profile_url' => false,
-
-    'layout_topnav' => null,
-    'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
-
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_btn' => 'btn-flat btn-primary',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_topnav' => 'navbar-white navbar-light',
-    'classes_topnav_nav' => 'navbar-expand',
-
-    'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
-    'sidebar_nav_accordion' => true,
-
-    'auth' => [
-        'login_url'    => 'login',
-        'logout_url'   => 'logout',
-        'register_url' => 'register',
-    ],
 
     /*
     |--------------------------------------------------------------------------
-    | Menu Items (INI BAGIAN YANG SAYA PERBAIKI TOTAL)
+    | Authentication & Layout
     |--------------------------------------------------------------------------
     */
+    'auth_logo' => [
+        'enabled' => false,
+    ],
+    
+    'usermenu_enabled' => true,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-primary',
 
+    'layout_topnav' => null,
+    'layout_boxed' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
+
+    'classes_auth_card' => 'card-outline card-primary',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_topnav' => 'navbar-white navbar-light',
+
+    /*
+    |--------------------------------------------------------------------------
+    | URLs
+    |--------------------------------------------------------------------------
+    */
+    'auth' => [
+        'login_url' => 'login',
+        'logout_url' => 'logout',
+        'register_url' => 'register',
+    ],
+
+    'dashboard_url' => 'dashboard',
+    'logout_method' => null,
+    'login_url' => 'login',
+    'register_url' => 'register',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Items (Navigasi Sidebar)
+    |--------------------------------------------------------------------------
+    */
     'menu' => [
+        // Bagian Pencarian
+        [
+            'type' => 'navbar-search',
+            'text' => 'search',
+            'topnav_right' => true,
+        ],
+        [
+            'type' => 'fullscreen-widget',
+            'topnav_right' => true,
+        ],
+
+        // Menu Utama
         ['header' => 'MAIN NAVIGATION'],
         [
             'text' => 'Dashboard',
@@ -90,19 +104,26 @@ return [
                 ],
                 [
                     'text' => 'Laporan',
-                    'url'  => 'laporan', // Sesuai web.php kamu
+                    'url'  => 'laporan',
                     'icon' => 'fas fa-fw fa-file-alt',
                 ],
             ],
         ],
-        ['header' => 'ACCOUNT'],
+
+        // Bagian Admin
+        ['header' => 'ADMIN AREA'],
         [
             'text' => 'Manajemen User',
-            'url'  => 'users', // Sesuai resource 'users' di web.php kamu
+            'url'  => 'users',
             'icon' => 'fas fa-fw fa-users-cog',
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Filters
+    |--------------------------------------------------------------------------
+    */
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
@@ -113,9 +134,14 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Plugins
+    |--------------------------------------------------------------------------
+    */
     'plugins' => [
         'Datatables' => [
-            'active' => true, // Saya aktifkan karena biasanya inventaris butuh tabel
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
