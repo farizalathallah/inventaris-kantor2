@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
          * jika aplikasi berjalan di lingkungan 'production' (Railway).
          * Ini akan memperbaiki error "Mixed Content" di console browser kamu.
          */
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
-        }
+        if (config('app.env') !== 'local') {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
     }
+}
 }
