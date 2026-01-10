@@ -51,8 +51,6 @@ return [
 
     'dashboard_url' => 'dashboard',
     'logout_method' => null,
-    'login_url' => 'login',
-    'register_url' => 'register',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,12 +108,13 @@ return [
             ],
         ],
 
-        // Bagian Admin
+        // Bagian Admin (Hanya muncul jika User memiliki role 'admin')
         ['header' => 'ADMIN AREA'],
         [
             'text' => 'Manajemen User',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-users-cog',
+            'can'  => 'admin-only', // Terhubung dengan Gate di AuthServiceProvider
         ],
     ],
 
