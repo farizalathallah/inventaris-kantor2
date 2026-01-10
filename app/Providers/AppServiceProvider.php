@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // Wajib import ini
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Baris ini akan memaksa semua link asset menggunakan https://
+        // Memaksa HTTPS jika aplikasi berjalan di Railway (production)
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
