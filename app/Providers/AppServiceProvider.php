@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Paksa semua link aset (CSS/JS) menggunakan HTTPS jika di Railway
+        // Memaksa Laravel menggunakan HTTPS agar CSS/JS terbaca di Railway
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
