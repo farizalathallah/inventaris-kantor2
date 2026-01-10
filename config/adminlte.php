@@ -12,7 +12,7 @@ return [
     'title_postfix' => '',
 
     'logo' => '<b>Inventaris</b>Barang',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
     'logo_img_class' => 'brand-image elevation-3',
     'logo_img_alt' => 'Logo Kantor',
 
